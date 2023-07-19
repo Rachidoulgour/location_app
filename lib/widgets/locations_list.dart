@@ -10,8 +10,10 @@ class LocationsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (locations.isEmpty) {
-      return const Center(
-        child: Text('No location added'),
+      return Center(
+        child: Text('No location added', style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),),
       );
     }
     return ListView.builder(

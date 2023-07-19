@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:locations_app/widgets/locations_list.dart';
 
 class LocationsScreen extends StatelessWidget {
   const LocationsScreen({super.key});
@@ -16,7 +17,8 @@ class LocationsScreen extends StatelessWidget {
             
           })
         ],
-      )
+      ),
+      body: LocationsList(locations: [],)
     );
   }
 }
