@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locations_app/screens/location_details.dart';
 
 import '../models/location.dart';
 
@@ -11,9 +12,12 @@ class LocationsList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (locations.isEmpty) {
       return Center(
-        child: Text('No location added', style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),),
+        child: Text(
+          'No location added',
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+        ),
       );
     }
     return ListView.builder(
@@ -25,6 +29,14 @@ class LocationsList extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onBackground,
                     ),
               ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (ctx) =>
+                        LocationDetailScreen(location: locations[index]),
+                  ),
+                );
+              },
             ));
   }
 }
