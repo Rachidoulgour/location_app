@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+class AddLocationScreen extends StatefulWidget {
+  const AddLocationScreen({super.key});
+
+  @override
+  State<AddLocationScreen> createState() {
+    return _AddLocationScreenState();
+  }
+}
+
+class _AddLocationScreenState extends State<AddLocationScreen> {
+  final _titleController = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('add new location'),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          children: [
+            TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (ctx) => const AddLocationScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.add),
+              label: const Text('Add Location'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
