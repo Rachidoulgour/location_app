@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locations_app/providers/user_locations.dart';
@@ -14,15 +15,16 @@ class AddLocationScreen extends ConsumerStatefulWidget {
 
 class _AddLocationScreenState extends ConsumerState<AddLocationScreen> {
   final _titleController = TextEditingController();
+  File? _selectedImage;
 
   void _saveLocation() {
     final enteredText = _titleController.text;
 
-    if (enteredText.isEmpty) {
+    if (enteredText.isEmpty || _selectedImage == null) {
       return;
     }
 
-    ref.read(userLocationsProvider.notifier).addLocation(enteredText);
+    ref.read(userLocationsProvider.notifier).addLocation(enteredText, _selectedImage!);
     Navigator.of(context).pop();
   }
 
@@ -51,7 +53,11 @@ class _AddLocationScreenState extends ConsumerState<AddLocationScreen> {
             const SizedBox(
               height: 16,
             ),
-            ImageInput(),
+            ImageInput(
+              onPickImage: (image) {
+                _selectedImage = image;
+              },
+            ),
             const SizedBox(
               height: 16,
             ),
