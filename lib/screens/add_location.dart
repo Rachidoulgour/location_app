@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locations_app/providers/user_locations.dart';
+import 'package:locations_app/widgets/image_input.dart';
 
 class AddLocationScreen extends ConsumerStatefulWidget {
   const AddLocationScreen({super.key});
@@ -47,6 +48,10 @@ class _AddLocationScreenState extends ConsumerState<AddLocationScreen> {
               style:
                   TextStyle(color: Theme.of(context).colorScheme.onBackground),
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            ImageInput(),
             const SizedBox(
               height: 16,
             ),
