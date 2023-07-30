@@ -17,15 +17,19 @@ class AddLocationScreen extends ConsumerStatefulWidget {
 class _AddLocationScreenState extends ConsumerState<AddLocationScreen> {
   final _titleController = TextEditingController();
   File? _selectedImage;
+  double? lat;
+  double? long;
 
   void _saveLocation() {
     final enteredText = _titleController.text;
 
-    if (enteredText.isEmpty || _selectedImage == null) {
+    if (enteredText.isEmpty || _selectedImage == null || lat==null || long==null) {
+      print(lat);
+      print(long);
       return;
     }
-
-    ref.read(userLocationsProvider.notifier).addLocation(enteredText, _selectedImage!);
+    
+    ref.read(userLocationsProvider.notifier).addLocation(enteredText, _selectedImage!, lat!, long!);
     Navigator.of(context).pop();
   }
 
@@ -62,7 +66,14 @@ class _AddLocationScreenState extends ConsumerState<AddLocationScreen> {
             const SizedBox(
               height: 16
             ),
-            LocationInput(),
+            LocationInput(
+              onPickMap: (la, lon) {
+                print(">>>>>>>>>>>>>>>>>>>>>>>>>>lat");
+                print(lat);
+                lat = la;
+                long = lon;
+              },
+            ),
             const SizedBox(
               height: 16
             ),

@@ -5,8 +5,8 @@ import 'package:locations_app/models/location.dart';
 class UserLocationsNotifier extends StateNotifier<List<Location>> {
   UserLocationsNotifier() : super(const []);
 
-  void addLocation(String title, File image) {
-    final newLocation = Location(title: title, image: image);
+  void addLocation(String title, File image, double lat, double long) {
+    final newLocation = Location(title: title, image: image, lat: lat, long: long);
     state = [newLocation, ...state];
   }
 }
